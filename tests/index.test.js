@@ -7,7 +7,10 @@ const UserModel = mongoose.model("User", UserSchema)
 beforeAll((done) => {
     mongoose.connect(process.env.ATLAS_URL + "/test",
         { useNewUrlParser: true, useUnifiedTopology: true },
-        () => done());
+        () => {
+            console.log("Successfully connected to Atlas.")
+            done()
+        });
 });
 
 afterAll((done) => {
