@@ -19,9 +19,11 @@ beforeAll((done) => {
 });
 
 afterAll((done) => {
+    console.log(mongoose.connection)
     mongoose.connection.db.dropDatabase(() => {
         mongoose.connection.close(() => done())
     });
+    // mongoose.connection.close(() => done())
 });
 
 describe('I: Testing a test', () => {
