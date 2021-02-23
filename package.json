@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "jest --watchAll ",
-    "dev": "nodemon ./src"
+    "dev": "nodemon ./src",
+    "start": "node ./src"
   },
   "dependencies": {
     "cors": "^2.8.5",
