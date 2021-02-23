@@ -28,6 +28,7 @@ describe('I: Testing a test', () => {
 })
 
 afterAll((done) => {
+    console.log(mongoose.connection)
     mongoose.connection.db.dropDatabase(() => {
         mongoose.connection.close(done);
     });
