@@ -10,6 +10,10 @@ beforeAll((done) => {
         { useNewUrlParser: true, useUnifiedTopology: true },
         () => {
             console.log("Successfully connected to Atlas.")
+            console.log({
+                user: process.env.ATLAS_USER,
+                password: process.env.ATLAS_PWD
+            })
             done()
         });
 });
