@@ -5,7 +5,8 @@ const UserSchema = require("../src/services/users/schema")
 const UserModel = mongoose.model("User", UserSchema)
 
 beforeAll((done) => {
-    mongoose.connect(`${process.env.ATLAS_URL}/test`,
+    mongoose.connect(`mongodb+srv://${process.env.ATLAS_USER}:${process.env.ATLAS_PWD}@cluster0.mu4m4.mongodb.net/test`,
+        // mongoose.connect(`${process.env.ATLAS_URL}/test`,
         { useNewUrlParser: true, useUnifiedTopology: true },
         () => {
             console.log("Successfully connected to Atlas.")
