@@ -1,5 +1,3 @@
-require("dotenv").config()
-
 const server = require("../src/server")
 const request = require("supertest")(server)
 const mongoose = require("mongoose")
@@ -7,17 +5,19 @@ const UserSchema = require("../src/services/users/schema")
 const UserModel = mongoose.model("User", UserSchema)
 
 beforeAll((done) => {
-    mongoose.connect(`mongodb+srv://${process.env.ATLAS_USER}:${process.env.ATLAS_PWD}@cluster0.mu4m4.mongodb.net/test?retryWrites=true&w=majority`,
-        // mongoose.connect(`${process.env.ATLAS_URL}/test`,
-        { useNewUrlParser: true, useUnifiedTopology: true },
-        () => {
-            console.log("Successfully connected to Atlas.")
-            console.log({
-                user: process.env.ATLAS_USER,
-                password: process.env.ATLAS_PWD
-            })
-            done()
-        });
+    // mongoose.connect(`mongodb+srv://${process.env.ATLAS_USER}:${process.env.ATLAS_PWD}@cluster0.mu4m4.mongodb.net/test?retryWrites=true&w=majority`,
+    //     // mongoose.connect(`${process.env.ATLAS_URL}/test`,
+    //     { useNewUrlParser: true, useUnifiedTopology: true },
+    //     () => {
+    //         console.log("Successfully connected to Atlas.")
+    //         console.log({
+    //             user: process.env.ATLAS_USER,
+    //             password: process.env.ATLAS_PWD
+    //         })
+    //         done()
+    //     });
+    console.log(`${process.env.ATLAS_URL}/test?retryWrites=true&w=majority`)
+    done()
 });
 
 // afterAll((done) => {
@@ -33,12 +33,6 @@ describe('I: Testing a test', () => {
 
 })
 
-afterAll((done) => {
-    console.log(mongoose.connection)
-    mongoose.connection.db.dropDatabase(() => {
-        mongoose.connection.close(done);
-    });
-});
 // describe('II: Testing user creation and login', () => {
 //     it("should test that the test route is returning 200", async () => {
 //         const response = await request.get("/test")
