@@ -20,11 +20,12 @@ beforeAll((done) => {
     done()
 });
 
-// afterAll((done) => {
-//     mongoose.connection.db.dropDatabase(() => {
-//         mongoose.connection.close(() => done())
-//     });
-// });
+afterAll((done) => {
+    // mongoose.connection.db.dropDatabase(() => {
+    //     mongoose.connection.close(() => done())
+    // });
+    done()
+});
 
 describe('I: Testing a test', () => {
     it("should test that true is true", () => {
