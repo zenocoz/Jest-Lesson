@@ -14,18 +14,24 @@ beforeAll((done) => {
         });
 });
 
-afterAll((done) => {
-    mongoose.connection.db.dropDatabase(() => {
-        mongoose.connection.close(() => done())
-    });
-});
+// afterAll((done) => {
+//     mongoose.connection.db.dropDatabase(() => {
+//         mongoose.connection.close(() => done())
+//     });
+// });
 
 describe('I: Testing a test', () => {
     it("should test that true is true", () => {
         expect(true).toBe(true)
     })
+
 })
 
+afterAll((done) => {
+    mongoose.connection.db.dropDatabase(() => {
+        mongoose.connection.close(done);
+    });
+});
 // describe('II: Testing user creation and login', () => {
 //     it("should test that the test route is returning 200", async () => {
 //         const response = await request.get("/test")
