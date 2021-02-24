@@ -20,4 +20,23 @@ router.post("/register", async (req, res) => {
     }
 })
 
+router.post("/login", async (req, res) => {
+    try {
+        const { username, password } = req.body
+        if (!username || !password) throw new Error("Provide credentials")
+
+        const user = await UserModel.findOne({ username })
+
+        user.password === password
+            ? res.status(200).send({ token: "VALID_TOKEN" })
+            : res.status(400).send({ message: "No username/password match" })
+
+    } catch (error) {
+        res.status(400).send({
+            message: error.message,
+            errorCode: 'wrong_credentials'
+        })
+    }
+})
+
 module.exports = router
