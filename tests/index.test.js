@@ -94,6 +94,29 @@ describe('II: Testing user creation and login', () => {
         expect(response.status).toBe(400)
     })
 
+    it("should test that with a valid token you are able to call the cat endpoint", async () => {
+        const body = {
+            token: "FAKE_TOKEN"
+        }
+
+        const response = await request.get("/cats").send(body)
+        const { url } = response.body
+
+        expect(url).toBeDefined()
+        expect(typeof url).toBe("string")
+    })
+
+    it("should test that with a non valid token you are not able to call the cat endpoint", async () => {
+        const body = {
+            token: "INVALID_TOKEN"
+        }
+
+        const response = await request.get("/cats").send(body)
+        const { url } = response.body
+
+        expect(url).toBeFalsy()
+    })
+
 
 
 })
