@@ -7,7 +7,7 @@ router.get("/", async (req, res) => {
         const response = await fetch("https://cataas.com/cat?json=true")
         const { url } = await response.json()
 
-        res.status(200).send({ url: `https://cataas.com/${url}` })
+        res.status(200).send({ url: `https://cataas.com${url}` })
     } catch (error) {
         res.status(400).send({ message: error.message })
     }
