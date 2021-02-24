@@ -7,10 +7,10 @@ const UserModel = require("mongoose").model("User", UserSchema)
 
 beforeAll((done) => {
   mongoose.connect(
-    `${process.env.COMPASS_URL}/test`,
+    `${process.env.ATLAS_URL}/test`,
     { useNewUrlParser: true, useUnifiedTopology: true },
     () => {
-      console.log("Successfully connected to Compass")
+      console.log("Successfully connected to Atlas.")
       done()
     }
   )
