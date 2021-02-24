@@ -1,6 +1,7 @@
 const server = require("../src/server")
 const request = require("supertest")(server)
 const mongoose = require("mongoose")
+const jwt = require("jsonwebtoken")
 
 const UserSchema = require("../src/services/users/schema")
 const UserModel = require("mongoose").model("User", UserSchema)
@@ -78,6 +79,14 @@ describe("Stage II: testing user creation and login", () => {
     expect(response.status).toBe(400)
     expect(response.body.errorCode).toBe("wrong_credentials")
   })
+
+  const verifyJwtToken = (token) =>
+    new Promise((res, rej) =>
+      jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
+        if (err) rej(err)
+        res(decoded)
+      })
+    )
 
   it("should return a valid token when loggin in with correct credentials", async () => {
     // "VALID_TOKEN"
