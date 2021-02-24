@@ -25,7 +25,7 @@ afterAll((done) => {
 
 describe("Stage I: Testing tests", () => {
     it("should check that true is true", () => {
-        expect(true).toBe(true)
+        expect(true).toBe(false)
     })
 
     it("should check that the /test endpoint is working correctly", async () => {
@@ -84,6 +84,7 @@ describe("Stage II: testing user creation and login", () => {
         const { token } = response.body
         expect(token).toBe(validToken)
     })
+
     it("should NOT return a valid token when loggin in with INCORRECT credentials", async () => {
         const response = await request.post("/users/login").send(invalidCredentials)
 
