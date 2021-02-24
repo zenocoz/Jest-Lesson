@@ -18,6 +18,7 @@
 
 // I: Testing a test
 
+it("should check that true is true", () => { expect(true).toBe(true) })
 
 // II: Testing user creation and login
 
