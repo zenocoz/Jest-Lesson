@@ -58,6 +58,19 @@ describe("Stage II: testing user creation and login", () => {
         expect(user).toBeDefined()
 
     })
+
+    it("should NOT return an id from a /users/register endpoint when provided with incorrect credentials", async () => {
+        const incorrectCredentials = {
+            username: "luisanton.io"
+        }
+
+        const response = await request.post("/users/register").send(incorrectCredentials)
+
+        expect(response.status).toBe(400)
+        expect(response.body.errorCode).toBe("wrong_credentials")
+
+    })
+
 })
 
 // III: Testing protected endpoints
