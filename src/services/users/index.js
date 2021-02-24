@@ -13,7 +13,10 @@ router.post("/register", async (req, res) => {
         res.status(201).send({ _id })
 
     } catch (error) {
-        res.status(500).send({ message: error.message })
+        res.status(400).send({
+            message: error.message,
+            errorCode: 'wrong_credentials'
+        })
     }
 })
 
