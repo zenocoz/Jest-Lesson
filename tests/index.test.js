@@ -2,9 +2,18 @@ const server = require("../src/server")
 const request = require("supertest")(server)
 const mongoose = require("mongoose")
 const jwt = require("jsonwebtoken")
+const { generateAccessToken, verifyToken } = require("../src/services/auth")
 
 const UserSchema = require("../src/services/users/schema")
 const UserModel = require("mongoose").model("User", UserSchema)
+
+// const getAccessToken = async () => {
+//   const accessToken = await generateAccessToken({
+//     username: "luis",
+//     password: "password",
+//   })
+//   return accessToken
+// }
 
 beforeAll((done) => {
   mongoose.connect(
@@ -41,7 +50,7 @@ describe("Stage I: Testing tests", () => {
 // II: Testing user creation and login
 
 describe("Stage II: testing user creation and login", () => {
-  const validCredentials = {
+  let validCredentials = {
     username: "luisanton.io",
     password: "password",
   }
@@ -55,7 +64,7 @@ describe("Stage II: testing user creation and login", () => {
     password: "incorrectPassword",
   }
 
-  const validToken = "VALID_TOKEN"
+  const token = "ejejekekdekedkelde"
 
   it("should return an id from a /users/register endpoint when provided with valid credentials", async () => {
     const response = await request
@@ -80,20 +89,15 @@ describe("Stage II: testing user creation and login", () => {
     expect(response.body.errorCode).toBe("wrong_credentials")
   })
 
-  const verifyJwtToken = (token) =>
-    new Promise((res, rej) =>
-      jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
-        if (err) rej(err)
-        res(decoded)
-      })
-    )
-
   it("should return a valid token when loggin in with correct credentials", async () => {
     // "VALID_TOKEN"
+
     const response = await request.post("/users/login").send(validCredentials) //
 
     const { token } = response.body
-    expect(token).toBe(validToken)
+
+    const decoded = await verifyToken(token)
+    expect(decoded.username).toBe(validCredentials.username)
   })
 
   it("should NOT return a valid token when loggin in with INCORRECT credentials", async () => {
