@@ -10,7 +10,7 @@ beforeAll((done) => {
     `${process.env.COMPASS_URL}/test`,
     { useNewUrlParser: true, useUnifiedTopology: true },
     () => {
-      console.log("Successfully connected to Atlas.")
+      console.log("Successfully connected to Compass")
       done()
     }
   )
