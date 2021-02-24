@@ -1,0 +1,13 @@
+1 When providing the Login endpoint with incorrect credentials:
+expect requests to be rejected with code 401
+
+2 When providing the Login endpoint with correct credentials:
+expect a valid JWT Access token back (use jwt.verify as always)
+
+3 When calling a “/cats” endpoint with the previously generated token:
+expect requests to be accepted with 200 code
+Expect the response.body.url to be defined
+Expect the typeof url in response.body to be “string”
+
+4 When calling the Cats endpoint without a valid token
+expect requests to be rejected with code 401

@@ -7,7 +7,8 @@
     "watch": "jest --watchAll",
     "test": "jest",
     "dev": "nodemon ./src",
-    "start": "node ./src"
+    "start": "node ./src",
+    "postinstall": "npm run test"
   },
   "dependencies": {
     "cors": "^2.8.5",
