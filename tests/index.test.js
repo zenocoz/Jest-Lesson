@@ -25,7 +25,7 @@ afterAll((done) => {
 
 describe("Stage I: Testing tests", () => {
     it("should check that true is true", () => {
-        expect(true).toBe(false)
+        expect(true).toBe(true)
     })
 
     it("should check that the /test endpoint is working correctly", async () => {
