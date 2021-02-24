@@ -4,7 +4,7 @@ const { PORT } = process.env
 const list = require("express-list-endpoints")
 
 mongoose.connect(
-    process.env.ATLAS_URL + "/jest-users",
+    process.env.ATLAS_URL + "/jest-lesson",
     {
         useNewUrlParser: true,
         useUnifiedTopology: true,

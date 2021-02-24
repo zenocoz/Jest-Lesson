@@ -4,10 +4,13 @@ const express = require("express")
 const server = new express()
 
 const userRouter = require("./services/users")
-const catsRouter = require("./services/cats")
 
 server.use(express.json())
-server.use("/", userRouter)
-server.use("/cats", catsRouter)
+
+server.get("/test", (req, res) => {
+    res.status(200).send({ message: "Test success" })
+})
+
+server.use("/users", userRouter)
 
 module.exports = server
